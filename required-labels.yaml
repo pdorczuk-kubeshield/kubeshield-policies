@@ -1,0 +1,56 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: required-labels
+  annotations:
+    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/description: >-
+      Labels are required on all Kubernetes resources to allow for proper RBAC
+spec:
+  validationFailureAction: enforce
+  rules:
+  - name: application-name-label
+    match:
+      resources:
+        kinds:
+        - *
+    exclude:
+      resources:
+        namespaces:
+        - kube-system
+    validate:
+      message: "label `application` is required"
+      pattern:
+        metadata:
+          labels:
+            application: "?*"
+  - name: team-label
+    match:
+      resources:
+        kinds:
+        - *
+    exclude:
+      resources:
+        namespaces:
+        - kube-system
+    validate:
+      message: "label `team` is required"
+      pattern:
+        metadata:
+          labels:
+            team: "?*"
+  - name: component-label
+    match:
+      resources:
+        kinds:
+        - *
+    exclude:
+      resources:
+        namespaces:
+        - kube-system
+    validate:
+      message: "label `component` is required"
+      pattern:
+        metadata:
+          labels:
+            component: "?*"
