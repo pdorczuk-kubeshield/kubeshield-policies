@@ -12,8 +12,7 @@ spec:
   - name: application-name-label
     match:
       resources:
-        kinds:
-        - *
+        name: "*" # Applies to all objects
     exclude:
       resources:
         namespaces:
@@ -27,8 +26,7 @@ spec:
   - name: team-label
     match:
       resources:
-        kinds:
-        - *
+        name: "*" # Applies to all objects
     exclude:
       resources:
         namespaces:
@@ -42,8 +40,7 @@ spec:
   - name: component-label
     match:
       resources:
-        kinds:
-        - *
+        name: "*" # Applies to all objects
     exclude:
       resources:
         namespaces:
