@@ -9,20 +9,6 @@ metadata:
 spec:
   validationFailureAction: enforce
   rules:
-  - name: application-name-label
-    match:
-      resources:
-        name: "*" # Applies to all objects
-    exclude:
-      resources:
-        namespaces:
-        - kube-system
-    validate:
-      message: "label `application` is required"
-      pattern:
-        metadata:
-          labels:
-            application: "?*"
   - name: team-label
     match:
       resources:
@@ -31,23 +17,11 @@ spec:
       resources:
         namespaces:
         - kube-system
+        kind:
+        - applications.argoproj.io
     validate:
       message: "label `team` is required"
       pattern:
         metadata:
           labels:
             team: "?*"
-  - name: component-label
-    match:
-      resources:
-        name: "*" # Applies to all objects
-    exclude:
-      resources:
-        namespaces:
-        - kube-system
-    validate:
-      message: "label `component` is required"
-      pattern:
-        metadata:
-          labels:
-            component: "?*"
