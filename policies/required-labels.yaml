@@ -17,7 +17,7 @@ spec:
       resources:
         namespaces:
         - kube-system
-        kind:
+        kinds:
         - applications.argoproj.io
     validate:
       message: "label `team` is required"
